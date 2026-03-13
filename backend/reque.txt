@@ -1,0 +1,27 @@
+pip freeze > requirements.txt
+USA EL COMANDO PARA METER TODO MAS RAPIDO
+
+-------------------------------------------------------------
+Las principales que instalaste tú:
+fastapi          → el framework principal
+uvicorn          → el servidor
+pymongo          → conexión a MongoDB
+pydantic         → validación de datos
+python-dotenv    → variables de entorno (.env)
+python-multipart → subir archivos/formularios
+
+
+Las de autenticación (tus routers de auth):
+passlib          → encriptar contraseñas
+bcrypt           → algoritmo de encriptación
+argon2-cffi      → otro algoritmo de encriptación
+python-jose      → JWT tokens
+PyJWT            → JWT tokens
+pwdlib           → manejo de contraseñas
+
+
+Las que se instalaron solas (dependencias):
+anyio, starlette, h11, click    → dependencias de fastapi/uvicorn
+dnspython                        → dependencia de pymongo para Atlas
+cryptography, rsa, ecdsa         → dependencias de python-jose
+idna, six, typing_extensions     → utilidades generales

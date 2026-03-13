@@ -1,0 +1,175 @@
+|-----------BASES DE DATOS RELACIONAL:|-----------------------------|
+Las BD esta formada por diferentes tablas
+Las tablas tienen diferentes registros
+Esos mismos registros se relacionan con un ID
+|-------------------------------------------------------------------|
+
+|---------BASES DE DATOS NO RELACIONAL:|----------------------------|
+Solo son documentos con texto,
+y que tipo de texto son esto formato JSON
+usamos claves, valores,diferentes cadenas de textos
+
+|-------------------------MONGODB ATLAS-----------------------------|
+MongoDB atlas: es el servicio para que podamos alojar las bases de datos mongoDB
+corre en: linux, mac, windows
+
+MONGODB LOCAL:
+----------------------------------------------------------------------------------------------------------
+entramos a la pagina: descargamos :  
+formato: .msi y zip y ejecutalamos ambos
+https://www.mongodb.com/try/download/community
+
+ejecutas instalas primero .msi y luego el zip
+
+despues extraes la carpeta del .zip
+creas una carpeta y copias el archivo bing
+ejemplo de carpeta: C:\Users\victo\mongodb
+-----------------------------------------------------------------------
+estructura:
+C:\Users\victo\mongodb
+mongolodd--|
+           |bin(carpeta tiene tools)---|old(carpeta del bing .zip)---dentro de ols estan los bing copiados del primer link, y tienes en bin los tools fuera de old
+           |data  |carpeta log, y tenemos donde c¿dentro de data esta la base de datos
+---------------------------------------------------------------------
+dentro de bin crea tu carpeta old y mete los archivos de bing 
+despues descarga los tools: MongoDB Command Line Database Tools Download
+
+FORMATO. ZIP
+https://www.mongodb.com/try/download/database-tools
+
+Extraes la carpeta .zip copia los bing y metelo dentro de la carpeta old
+Estructura:
+C:\Users\victo\mongodb\
+mongolodd
+    |_______bin (tiene los tools nada mas)
+    |        |_______old (estan los bing copiados del primer link .zip)
+    |
+    |______data (creara DB)
+             |____log
+-------------------------------------------------------------------
+LUEGO:
+ABRE LA TERMINAL:cmd 
+----------------------------OPCION 01:-----------------------------
+1. primero si no tienes path en el sistema de tu pc pon la ruta completa:
+
+"C:\Program Files\MongoDB\Server\8.2\bin\mongod.exe" --dbpath="C:\Users\victo\mongodb\data"
+
+----------------------------OPCION 02:-----------------------------
+2. FUNCIONA SI TIENES EL PATH
+mongod --dbpath="C:\Users\victo\mongodb\data"
+
+- ✅ **Si funciona** → MongoDB ya está en tu PATH, listo!
+
+--------------------------------------------------
+### Para agregar al PATH (hacerlo permanente):
+
+1. `Win + S` → busca **"Variables de entorno"**
+2. Clic en **"Variables de entorno..."**
+3. En **"Variables del sistema"** → selecciona **Path** → **Editar**
+4. Clic **Nuevo** y agrega:
+```
+C:\Program Files\MongoDB\Server\8.2\bin
+
+El PATH es una lista de rutas donde Windows busca programas
+
+|------------------------------------------MONGODB ATLAS y vs code-------------------------------------------|
+
+DE MANERA MONGODB ATLAS:
+
+1. https://cloud.mongodb.com/v2/69b2f15e25d5e69b61fcce0b#/explorer/69b2f1a6fa25d7be2d6b780b
+
+2. Crea tu cuenta 
+
+3. crea tu proyecto y BD:
+
+☁️ MongoDB Atlas (la nube)
+    └── 🏢 Organización (tu cuenta)
+            └── 📁 Proyecto (proyecto)
+                    └── 🖥️ CLUSTER ← aquí vives
+                            └── 🗃️ Base de datos (python_fastapi)
+                                    └── 📋 Colección (users)
+      
+                                                └── 📄 Documentos (datos)
+---------------------------------------------------------------------------------------------
+URL DB: coneccion
+mongodb+srv://datos:datos@cluster1.wuxjxzt.mongodb.net/...
+               ↑     ↑
+          usuario  contraseña
+---------------------------------------------------------------------------------------------
+
+Estructura completa de la URI explicada:
+mongodb+srv:// datos : datos @ cluster1.wuxjxzt.mongodb.net / testing
+               ────   ─────   ──────────────────────────────  ─────────────────
+              usuario  pass         dirección del cluster        agraga en url noombre DB
+
+---------------------------------------------------------------------------------------------
+
+nombre de la base de datos
+Va después del cluster, antes del ?:
+mongodb+srv://datos:datos@cluster1.wuxjxzt.mongodb.net/python_fastapi
+                                                        ─────────────
+                                                        nombre de tu BD
+---------------------------------------------------------------------------------------------
+
+|---------------------AHORA CREAMOS LA DB O INSERTAMOS ALGO PARA QUE APAREZCA:----------------------|
+
+|.....................DOS FORMAS.........................|
+
+
+|----------------------------Codigo:------------------------------|
+Creas un archivo dentro de backend o 
+donde gustes, sirve para que ejecutes 
+la terminal sin detener uvicorn
+en el codigo llamas primero a la DB:  en client.py
+------------------------------------------------------------------
+
+# llamamamos db
+db = db_client["testing"] # selecciona la BD dentro del cluster
+users = db["users"] #fila(coleccion)
+------------------------------------------------------------------
+ARCHIVO:
+|---------------------------test_user.py--------------------------------|
+
+|-------Archivo creado dentro de backend o lo pusiste importas client----------------------------
+despues: insertas:
+
+# al insertar → BD se crea sola
+
+from db.client import  users
+users.insert_one(
+    {"nombre": "Victor", 
+     "email": "victor@test.com"})
+print("✅ Usuario insertado - BD testing creada!")
+------------------------------------------------------------------------
+## Resultado es el mismo en ambas:
+```
+Cluster1
+  └── testing        ← BD creada
+        └── users    ← colección creada
+
+|------------OPCION 2: mongoDB atlas:--------------------------------|
+
+### Forma 2 — Desde Atlas (visual)
+```
++ Create database
+  → Database name: testing
+  → Collection name: users
+  → Create
+```
+
+
+
+
+
+¿Qué es exactamente un Cluster?
+Es básicamente un servidor en la nube 
+donde viven todas tus bases de datos. 
+Es como una computadora potente de MongoDB 
+que está siempre encendida en internet.
+
+Explicación simpleClusterEl servidor/computadora 
+en la nubeBase de datosComo una carpeta dentro del 
+servidorColecciónComo una tabla (igual que en SQL)
+DocumentoComo una fila de datos (en JSON)
+
+
