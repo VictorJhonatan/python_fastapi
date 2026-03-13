@@ -1,0 +1,65 @@
+Paso 1 — Preparar tu proyecto antes de subir a Render
+
+
+2. Crea un archivo render.yaml dentro de backend:
+yamlservices:
+  - type: web
+    name: python-fastapi
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+
+3. Verifica tu requirements.txt está actualizado:
+bashpip freeze > requirements.txt
+
+4 Paso  — Crear cuenta en Render y conectar GitHub
+
+1. Ve a:
+render.com
+
+2. 4. Una vez dentro de Render:
+Clic en "New +"
+    ↓
+Selecciona "Web Service"
+    ↓
+Selecciona tu repositorio de GitHub
+    ↓
+Clic en "Connect"
+----------------------------------------------------------------------------
+5. Configura el servicio así:
+Campo              Valor 
+Name            -python-fastapi
+Branch          - main
+Root Directory  - backend
+Runtime         - Python
+Build Command     pip install -r requirements.txt
+Start Command     uvicorn main:app --host 0.0.0.0 --port $PORT
+
+
+------------------------------EJECUTA TODO ..................................
+⏳ Paso 1: Esperar a que termine
+
+Ahora mismo no tienes que hacer nada.
+Espera hasta que el estado cambie de Building → Live.
+
+En los logs deberías ver algo como:
+
+==> Build successful
+==> Starting service
+
+
+🌐 Paso 2: Abrir tu API
+
+Cuando termine, haz clic en este enlace que aparece en tu panel:
+
+https://python-fastapi-jkwo.onrender.com
+https://python-fastapi-jkwo.onrender.com/userdb
+
+
+
+O prueba directamente:
+
+https://python-fastapi-jkwo.onrender.com/docs
+
+
+Ahí verás Swagger UI, la interfaz automática de FastAPI para probar la API.
